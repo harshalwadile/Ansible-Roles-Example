@@ -1,0 +1,22 @@
+---
+  - name: Apche is installed
+    yum:
+       name=httpd
+       state=present
+  - name: Start Apache
+    service:
+           name=httpd
+           state=restarted
+  - name: Configuration
+    template: 
+           src=httpd.j2
+           dest=/etc/httpd/conf/httpd.conf
+    notify:
+        - Restart Apache
+  - name: Copy site files
+    template: 
+           src=index.j2
+           dest={{ doc_root }}/index.html
+
+
+ 

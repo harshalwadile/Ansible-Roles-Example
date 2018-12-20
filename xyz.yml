@@ -1,0 +1,8 @@
+---
+  - hosts: datacentre-east
+    gather_facts: no
+    become: yes
+
+    tasks:
+    - name: "Ping module"
+      ping:
